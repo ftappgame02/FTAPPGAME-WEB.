@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FTAPPGAME - La Mejor Experiencia de Apuestas</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(
+          135deg,
+          #0a0a0a 0%,
+          #1a1a2e 50%,
+          #16213e 100%
+        );
+        color: white;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+
+      .container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: 20px;
+      }
+
+      .background-animation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+      }
+
+      .floating-shapes {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(45deg, #00d4ff, #091a7a);
+        border-radius: 50%;
+        opacity: 0.1;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .floating-shapes:nth-child(1) {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+
+      .floating-shapes:nth-child(2) {
+        top: 70%;
+        right: 10%;
+        animation-delay: 2s;
+        background: linear-gradient(45deg, #ff6b6b, #feca57);
+      }
+
+      .floating-shapes:nth-child(3) {
+        top: 40%;
+        left: 80%;
+        animation-delay: 4s;
+        background: linear-gradient(45deg, #48dbfb, #0abde3);
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-30px) rotate(180deg);
+        }
+      }
+
+      .logo {
+        font-size: 4rem;
+        font-weight: 900;
+        background: linear-gradient(45deg, #00d4ff, #ff6b6b, #feca57);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-align: center;
+        margin-bottom: 1rem;
+        text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.3));
+        }
+        to {
+          filter: drop-shadow(0 0 30px rgba(255, 107, 107, 0.5));
+        }
+      }
+
+      .subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 3rem;
+        text-align: center;
+        opacity: 0.9;
+        font-weight: 300;
+        letter-spacing: 1px;
+      }
+
+      .demo-button {
+        position: relative;
+        padding: 20px 50px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb);
+        background-size: 200% 200%;
+        border: none;
+        border-radius: 50px;
+        color: white;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        animation: gradientShift 3s ease infinite;
+        overflow: hidden;
+      }
+
+      .demo-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .demo-button:hover::before {
+        left: 100%;
+      }
+
+      .demo-button:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(255, 107, 107, 0.5);
+      }
+
+      .demo-button:active {
+        transform: translateY(-2px) scale(1.02);
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 4rem;
+        max-width: 1000px;
+        width: 100%;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .feature-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .feature-description {
+        opacity: 0.8;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 768px) {
+        .logo {
+          font-size: 2.5rem;
+        }
+
+        .subtitle {
+          font-size: 1.2rem;
+        }
+
+        .demo-button {
+          padding: 15px 35px;
+          font-size: 1.1rem;
+        }
+
+        .features {
+          margin-top: 2rem;
+        }
+      }
+
+      .particles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -2;
+      }
+
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #00d4ff;
+        border-radius: 50%;
+        animation: particles 15s linear infinite;
+      }
+
+      @keyframes particles {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) rotate(720deg);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="particles" id="particles"></div>
+
+    <div class="background-animation">
+      <div class="floating-shapes"></div>
+      <div class="floating-shapes"></div>
+      <div class="floating-shapes"></div>
+    </div>
+
+    <div class="container">
+      <h1 class="logo">FTAPPGAME</h1>
+      <p class="subtitle">La Revolución de las Apuestas Está Aquí</p>
+
+      <a
+        href="https://m-j-app-game.vercel.app/"
+        class="demo-button"
+        id="demoButton"
+      >
+        🎮 Juega Nuestra Demo
+      </a>
+
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3 class="feature-title">Ultra Rápido</h3>
+          <p class="feature-description">
+            Experiencia de juego instantánea con la tecnología más avanzada
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3 class="feature-title">100% Seguro</h3>
+          <p class="feature-description">
+            Tus datos y transacciones protegidos con encriptación de última
+            generación
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💎</div>
+          <h3 class="feature-title">Premios Increíbles</h3>
+          <p class="feature-description">
+            Las mejores recompensas y bonificaciones del mercado
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Crear partículas animadas
+      function createParticles() {
+        const particlesContainer = document.getElementById("particles");
+
+        for (let i = 0; i < 50; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.animationDelay = Math.random() * 15 + "s";
+          particle.style.animationDuration = Math.random() * 10 + 10 + "s";
+
+          // Colores aleatorios para las partículas
+          const colors = ["#00d4ff", "#ff6b6b", "#feca57", "#48dbfb"];
+          particle.style.background =
+            colors[Math.floor(Math.random() * colors.length)];
+
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      // Efecto de click en el botón
+      document
+        .getElementById("demoButton")
+        .addEventListener("click", function (e) {
+          // Crear efecto de ondas
+          const ripple = document.createElement("span");
+          const rect = this.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          const x = e.clientX - rect.left - size / 2;
+          const y = e.clientY - rect.top - size / 2;
+
+          ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: rgba(255, 255, 255, 0.6);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                pointer-events: none;
+            `;
+
+          this.appendChild(ripple);
+
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+        });
+
+      // Añadir animación de ripple
+      const style = document.createElement("style");
+      style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+      document.head.appendChild(style);
+
+      // Inicializar partículas cuando se carga la página
+      window.addEventListener("load", createParticles);
+
+      // Efecto parallax suave en el scroll
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const shapes = document.querySelectorAll(".floating-shapes");
+        shapes.forEach((shape, index) => {
+          const speed = (index + 1) * 0.5;
+          shape.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+      });
+
+      // Añadir efecto de hover a las cards
+      document.querySelectorAll(".feature-card").forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-10px) rotateY(5deg)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(0) rotateY(0)";
+        });
+      });
+    </script>
+  </body>
+</html>
